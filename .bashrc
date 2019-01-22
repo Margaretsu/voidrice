@@ -5,7 +5,8 @@
 # | |_) | (_| \__ \ | | | | | (__
 # |_.__/ \__,_|___/_| |_|_|  \___|
 
-#stty -ixon # Disable ctrl-s and ctrl-q.
+stty -ixon # Disable ctrl-s and ctrl-q.
+shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
 # Setting Bash prompt. Capitalizes username and host if root user (my root user uses this same config file).
@@ -16,14 +17,11 @@ fi
 
 export GPG_TTY=$(tty)
 
-
 # System Maintainence
 alias mw="~/.config/mutt/mutt-wizard.sh"
 alias muttwizard="~/.config/mutt/mutt-wizard.sh"
 alias sdn="sudo shutdown now"
 alias psref="gpg-connect-agent RELOADAGENT /bye" # Refresh gpg
-
-
 
 # Some aliases
 alias e="$EDITOR"
@@ -46,5 +44,10 @@ alias grep="grep --color=auto"
 alias diff="diff --color=auto"
 alias ccat="highlight --out-format=ansi" # Color cat - print file with syntax highlighting.
 
+# Internet
+alias yt="youtube-dl --add-metadata -ic" # Download video link
+alias yta="yt -x -f bestaudio/best" # Download only audio
+alias YT="youtube-viewer"
 
-
+shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ;}
+vf() { $EDITOR $(fzf) ;}
